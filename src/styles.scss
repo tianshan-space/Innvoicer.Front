@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@use "assets/styles/style";
+@import "primeicons/primeicons.css";
+
+* {
+  font-family: "DejaVu Sans Condensed", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

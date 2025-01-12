@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="main">
+  <div class="cont">
+    <div class="left">
+      <img src="./../../../../assets/images/photo-1508385082359-f38ae991e8f2.avif">
+    </div>
+    <div class="right">
+      <h1>Innvoicer</h1>
+
+      <h2>პრობლემის შემთხვევაში დაგვიკავშირდით: +995 511 123 456</h2>
+
+      <form (ngSubmit)="login()" [formGroup]="loginForm">
+        <p-floatlabel variant="in">
+          <input pInputText formControlName="email" id="name" autocomplete="off" pSize="small"/>
+          <label for="name">In Label</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="in">
+          <input pInputText formControlName="password" id="password" autocomplete="off" pSize="small" type="password"/>
+          <label for="password">In Label</label>
+        </p-floatlabel>
+
+        <div class="error">
+          @if(errorOccurred) {
+            <p>მონაცემები არასწორია</p>
+          }
+        </div>
+
+        <p-button label="შესვლა" [disabled]="loginForm.invalid" type="submit" [style]="{'width': '100%', 'max-width': '450px'}"/>
+      </form>
+    </div>
+  </div>
+</div>

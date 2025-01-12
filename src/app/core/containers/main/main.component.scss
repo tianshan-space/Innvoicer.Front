@@ -1,0 +1,14 @@
+.main {
+  position: relative;
+  background-color: rgb(235, 232, 244);
+  min-height: 100vh;
+  padding: 10px 10px 0 10px;
+
+  .panel {
+    position: fixed;
+  }
+
+  .cont {
+    transition: margin-left ease-in-out 1s;
+  }
+}

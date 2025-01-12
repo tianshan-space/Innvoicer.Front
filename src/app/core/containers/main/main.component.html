@@ -1,1 +1,8 @@
-<p>main works!</p>
+<div class="main">
+  <app-panel class="panel" [(showPanel)]="showPanel"></app-panel>
+
+  <div class="cont" [style.margin-left]="!showPanel() ? '60px' : '275px'">
+    <app-actions></app-actions>
+    <router-outlet></router-outlet>
+  </div>
+</div>

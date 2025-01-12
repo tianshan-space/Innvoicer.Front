@@ -9,7 +9,7 @@ export class AuthService {
   private readonly router = inject(Router)
 
   isAuthenticated(): boolean {
-    this.router.navigate(['/login']);
-    return false;
+    // this.router.navigate(['/login']);
+    return true;
   }
 }

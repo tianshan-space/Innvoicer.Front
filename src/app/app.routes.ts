@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './auth/container/login/login.component';
+import { MainComponent } from './core/containers/main/main.component';
 import { authGuard } from './core/guards/auth.guard';
 import { featureRouters } from './features/routes';
-import { LoginComponent } from './auth/container/login/login.component';
 
 export const routes: Routes = [
   {
@@ -10,9 +11,13 @@ export const routes: Routes = [
   },
   {
     path: '',
-    pathMatch: 'full',
+    redirectTo: 'invoices',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: MainComponent,
     canActivate: [authGuard],
-    loadComponent: () => import('./core/containers/main/main.component').then((m) => m.MainComponent),
     children: [...featureRouters]
   }
 ];
