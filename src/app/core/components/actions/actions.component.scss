@@ -1,0 +1,25 @@
+.actions {
+  width: 100%;
+  height: 90px;
+  padding-top: 30px;
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+
+    .main-icon {
+      color: rgb(16, 0, 34);
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    .secondary-icon {
+      margin: 0 5px;
+    }
+
+    .is-parent {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

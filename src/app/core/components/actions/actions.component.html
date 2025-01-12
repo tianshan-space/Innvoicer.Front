@@ -1,0 +1,15 @@
+<div class="actions">
+  @if (breadcrumbConfig) {
+    <div class="breadcrumb">
+      <i [ngClass]="breadcrumbConfig.icon" class="main-icon"></i>
+      <p
+        (click)="navigateToParent()"
+        [class.is-parent]="breadcrumbConfig.labelRoute"
+      >{{ breadcrumbConfig.label }}</p>
+      @if (breadcrumbConfig.labelRoute) {
+        <i class="pi pi-angle-right secondary-icon"></i>
+        <p>{{ breadcrumbConfig.childLabel }}</p>
+      }
+    </div>
+  }
+</div>
