@@ -1,1 +1,64 @@
-<p>add-invoice works!</p>
+<div class="cont">
+    <div class="main">
+        <h1>ინვოისი</h1>  
+    
+        <div class="info">
+            <h3>სტუმრის ინფორმაცია</h3>
+            <div class="guest-info">
+                <div>
+                    <label>სახელი</label>
+                    <label>გვარი</label>
+                </div>
+                <div>
+                    <input type="text" pInputText [(ngModel)]="name"/>
+                    <input type="text" pInputText [(ngModel)]="lastName"/>
+                </div>
+                <div>
+                    <label>ტელეფონი</label>
+                    <label>მეილი</label>
+                </div>
+                <div>
+                    <input type="text" pInputText [(ngModel)]="phone"/>
+                    <input type="text" pInputText [(ngModel)]="email"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="preview">
+        <h3>გადახედვა</h3>
+        <div class="invoice">
+            <div class="header">
+                <div class="left">
+                    <h2>ინვოისი</h2>
+
+                    <p>სასტუმრო მგზავრები</p>
+                    <p>ბაკურიანი მაგარი ქუჩა N2</p>
+                    <p>ტელ: +995 555 123 456</p>
+                </div>
+                <img src="https://img.freepik.com/premium-vector/hotel-logo-icon-vector-hotel-logo-silhouette-building-vector-illustration_1199258-5038.jpg">
+            </div>
+
+            <div class="info">
+                <h2>სტუმარი</h2>
+                <p>{{ name }} {{ lastName }}</p>
+                <p>ტელ: {{ phone }}</p>
+                <p>ელ-ფოსტა: {{ email }}</p>
+            </div>
+        </div>
+        
+        <p-button
+            label="შემოწმება"
+            icon="pi pi-eye"
+            severity="info"
+            [style]="{'width': '280px', position: 'absolute', bottom: '80px', left: '20px'}"
+        />
+
+        <p-button
+            label="გაგზავნა"
+            icon="pi pi-send"
+            [style]="{'width': '280px', position: 'absolute', bottom: '22px', left: '20px'}"
+        />
+    </div>
+  </div>
+  

@@ -38,7 +38,7 @@ export const appConfig: ApplicationConfig = {
         preset: MyPreset
       }
     }),
-    provideRouter(routes),
+    provideRouter(routes, withViewTransitions()),
     provideHttpClient(
     //  withInterceptors([responseInterceptor, authInterceptor]),
     ),

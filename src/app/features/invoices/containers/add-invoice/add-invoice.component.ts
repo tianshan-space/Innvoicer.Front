@@ -1,15 +1,24 @@
 import { Component, inject } from '@angular/core';
 import { BreadcrumbService } from '../../../../core/services/breadcrumb.service';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-add-invoice',
-  imports: [],
+  imports: [InputTextModule, ButtonModule, FormsModule],
   templateUrl: './add-invoice.component.html',
   styleUrl: './add-invoice.component.scss'
 })
 export class AddInvoiceComponent {
 
   private breadcrumbService = inject(BreadcrumbService);
+
+  name = '';
+  lastName = '';
+  phone = '';
+  email = '';
+
 
   ngOnInit() {
     this.breadcrumbService.setConfig({
