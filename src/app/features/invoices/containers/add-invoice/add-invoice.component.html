@@ -1,29 +1,88 @@
 <div class="cont">
-    <div class="main">
-        <h1>ინვოისი</h1>  
-    
-        <div class="info">
+    <form class="main" [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+        <h1>ინვოისი</h1>
+
+        <div class="info" formGroupName="client">
             <h3>სტუმრის ინფორმაცია</h3>
-            <div class="guest-info">
+            <div class="additional-info">
                 <div>
-                    <label>სახელი</label>
-                    <label>გვარი</label>
+                    <label for="name">სახელი გვარი</label>
+                    <label for="personalId">პირადი ნომერი</label>
                 </div>
                 <div>
-                    <input type="text" pInputText [(ngModel)]="name"/>
-                    <input type="text" pInputText [(ngModel)]="lastName"/>
+                    <input type="text" pInputText id="name" formControlName="name"/>
+                    <input type="text" pInputText id="personalId" formControlName="personalId"/>
                 </div>
                 <div>
-                    <label>ტელეფონი</label>
-                    <label>მეილი</label>
+                    <label for="phone">ტელეფონი</label>
+                    <label for="email">მეილი</label>
                 </div>
                 <div>
-                    <input type="text" pInputText [(ngModel)]="phone"/>
-                    <input type="text" pInputText [(ngModel)]="email"/>
+                    <input type="text" pInputText id="phone" formControlName="phone"/>
+                    <input type="email" pInputText id="email" formControlName="email"/>
                 </div>
             </div>
         </div>
-    </div>
+
+      <div class="info">
+          <h3>ინვოისის დეტალები</h3>
+          <div class="additional-info">
+              <div>
+                  <label for="issueDate">შექმნის თარიღი</label>
+                  <label for="dueDate">ვალიდურია</label>
+              </div>
+              <div>
+                  <p-datepicker id="issueDate" formControlName="issueDate" [showIcon]="true" inputId="icondisplay" [style]="{width: '100%'}"/>
+                  <p-datepicker id="dueDate" formControlName="dueDate" [showIcon]="true" inputId="icondisplay" [style]="{width: '100%'}"/>
+              </div>
+              <div>
+                  <label for="totalAmount">ჯამური თანხა</label>
+                  <label for="depositAmount">წინასწარ გადასახდელი</label>
+              </div>
+              <div>
+                  <input type="number" pInputText id="totalAmount" formControlName="totalAmount" placeholder="შეივსება ავტომატურად"/>
+                  <input type="number" pInputText id="depositAmount" formControlName="depositAmount"/>
+              </div>
+          </div>
+      </div>
+
+      <div class="services" formArrayName="items">
+        <p-button
+          label="სერვისის დამატება"
+          icon="pi pi-plus"
+          [style]="{'width': '100%'}"
+          (click)="addItem()"
+        />
+
+
+          <div class="headers">
+            <label style="flex: 2">დასახელება</label>
+            <label>ფასი</label>
+            <label>რაოდენობა</label>
+            <label style="flex: 2">Check-In</label>
+            <label style="flex: 2">Check-Out</label>
+            <div style="width: 44px;"></div>
+          </div>
+
+          <div class="headers"  *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+            <div style="flex: 2">
+              <input type="text" pInputText formControlName="name" [style]="{width: '100%', 'min-width': '50px'}"/>
+            </div>
+            <div style="flex: 1">
+              <input type="number" pInputText formControlName="unitPrice" [style]="{width: '100%', 'min-width': '50px'}" (input)="processTotal()"/>
+            </div>
+            <div style="flex: 1">
+              <input type="number" pInputText formControlName="quantity" [style]="{width: '100%', 'min-width': '50px'}"  (input)="processTotal()"/>
+            </div>
+            <p-datepicker formControlName="checkInDate" class="tst"/>
+            <p-datepicker formControlName="checkOutDate" class="tst"/>
+            <div>
+              <p-button icon="pi pi-trash" (click)="removeItem(i)" [style]="{height: '47px'}" tooltipPosition="bottom" pTooltip="წაშლა"/>
+            </div>
+          </div>
+
+        </div>
+    </form>
 
     <div class="preview">
         <h3>გადახედვა</h3>
@@ -41,24 +100,23 @@
 
             <div class="info">
                 <h2>სტუმარი</h2>
-                <p>{{ name }} {{ lastName }}</p>
-                <p>ტელ: {{ phone }}</p>
-                <p>ელ-ფოსტა: {{ email }}</p>
+                <p>სახელი</p>
+                <p>ტელ:</p>
+                <p>ელ-ფოსტა:</p>
             </div>
         </div>
-        
+
         <p-button
             label="შემოწმება"
             icon="pi pi-eye"
             severity="info"
-            [style]="{'width': '280px', position: 'absolute', bottom: '80px', left: '20px'}"
+            [style]="{'width': '250px', position: 'absolute', bottom: '80px', left: '20px'}"
         />
 
         <p-button
             label="გაგზავნა"
             icon="pi pi-send"
-            [style]="{'width': '280px', position: 'absolute', bottom: '22px', left: '20px'}"
+            [style]="{'width': '250px', position: 'absolute', bottom: '22px', left: '20px'}"
         />
     </div>
   </div>
-  
