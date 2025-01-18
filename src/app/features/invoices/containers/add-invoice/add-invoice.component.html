@@ -1,5 +1,5 @@
-<div class="cont">
-    <form class="main" [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+<form class="cont" [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <div class="main">
         <h1>ინვოისი</h1>
 
         <div class="info" formGroupName="client">
@@ -82,7 +82,7 @@
           </div>
 
         </div>
-    </form>
+      </div>
 
     <div class="preview">
         <h3>გადახედვა</h3>
@@ -100,7 +100,7 @@
 
             <div class="info">
                 <h2>სტუმარი</h2>
-                <p>სახელი</p>
+                <p>სახელი: {{ invoiceForm.value.client?.name}}</p>
                 <p>ტელ:</p>
                 <p>ელ-ფოსტა:</p>
             </div>
@@ -114,9 +114,11 @@
         />
 
         <p-button
-            label="გაგზავნა"
-            icon="pi pi-send"
+            label="შენახვა"
+            icon="pi pi-save"
+            type="submit"
+            [disabled]="!invoiceForm.valid"
             [style]="{'width': '250px', position: 'absolute', bottom: '22px', left: '20px'}"
         />
     </div>
-  </div>
+  </form>

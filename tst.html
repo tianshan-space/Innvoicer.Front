@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f7f7f7;
+    }
+    .invoice-container {
+      width: 1000px;
+      height: 1310px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .header h1 {
+      color: #2e5cb8;
+    }
+    .header img {
+      width: 80px;
+      height: 80px;
+    }
+    .details {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .details div {
+      width: 48%;
+    }
+    .details p {
+      margin: 5px 0;
+    }
+    .invoice-details {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+    .invoice-details div {
+      text-align: left;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    table th {
+      background-color: #f0f0f0;
+    }
+    .totals {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .totals div {
+      width: 40%;
+    }
+    .totals p {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+    }
+    .signature {
+      margin-top: 40px;
+      text-align: right;
+      font-size: 16px;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+      border-top: 2px solid #ccc;
+      padding-top: 10px;
+    }
+    .footer p {
+      margin: 5px 0;
+    }
+    .footer h2 {
+      color: #2e5cb8;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    <div class="header">
+      <h1>INVOICE</h1>
+      <img src="https://example.com/logo.png" alt="Company Logo">
+    </div>
+    <div class="details">
+      <div>
+        <strong>Bill To:</strong>
+        <p>John Doe</p>
+        <p>Personal ID: 987654321</p>
+        <p>123 Elm Street</p>
+        <p>Springfield, USA</p>
+        <p>Email: johndoe@example.com</p>
+        <p>Phone: +1 234-567-8900</p>
+      </div>
+      <div>
+        <strong>Company:</strong>
+        <p>Tech Solutions Ltd.</p>
+        <p>456 Main Street</p>
+        <p>New York, NY 10001</p>
+        <p>USA</p>
+        <p>VAT: US123456789</p>
+      </div>
+    </div>
+    <div class="invoice-details">
+      <div>
+        <p><strong>Invoice #: </strong>INV-2025-0001</p>
+        <p><strong>Invoice Date: </strong>2025-01-18</p>
+        <p><strong>Due Date: </strong>2025-02-01</p>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>QTY</th>
+          <th>DESCRIPTION</th>
+          <th>CHECK-IN</th>
+          <th>CHECK-OUT</th>
+          <th>UNIT PRICE</th>
+          <th>TOTAL PRICE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2</td>
+          <td>Premium Software License</td>
+          <td>2025-01-18</td>
+          <td>2025-01-25</td>
+          <td>$500.00</td>
+          <td>$1000.00</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>On-site Setup Service</td>
+          <td>2025-01-20</td>
+          <td>2025-01-20</td>
+          <td>$500.00</td>
+          <td>$500.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="totals">
+      <div>
+        <p><strong>Deposit Amount:</strong> $300.00</p>
+        <p><strong>Total Amount:</strong> $1500.00</p>
+      </div>
+    </div>
+    <div class="signature">
+      <p>Authorized Signature</p>
+    </div>
+    <div class="footer">
+      <p>Payment is due by 2025-02-01</p>
+      <h2>Thank You for Your Business!</h2>
+    </div>
+  </div>
+</body>
+</html>

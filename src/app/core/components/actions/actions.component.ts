@@ -3,10 +3,12 @@ import { BreadcrumbService } from '../../services/breadcrumb.service';
 import { Breadcrumb } from '../../models/breadcrumbModel';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-actions',
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule, SelectModule],
   templateUrl: './actions.component.html',
   styleUrl: './actions.component.scss'
 })
@@ -16,6 +18,14 @@ export class ActionsComponent implements OnInit {
 
   private breadcrumbService = inject(BreadcrumbService);
   private router = inject(Router);
+
+  cities = [
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' }
+  ];
 
   ngOnInit() {
     this.breadcrumbService.getConfig().subscribe((m) => {

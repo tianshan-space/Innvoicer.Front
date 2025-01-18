@@ -25,7 +25,7 @@ export class AddInvoiceComponent {
     client: new FormGroup({
       name: new FormControl('', Validators.required),
       personalId: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
+      address: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', Validators.required),
     }),

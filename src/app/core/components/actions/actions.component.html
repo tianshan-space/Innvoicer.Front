@@ -11,5 +11,11 @@
         <p>{{ breadcrumbConfig.childLabel }}</p>
       }
     </div>
+  } @else {
+    <div></div>
   }
+
+  <p-select [options]="cities" optionLabel="name" placeholder="Select a City" [style]="{width: '350px'}"/>
+
+  <p-button label="გასვლა" variant="outlined" icon="pi pi-power-off"/>
 </div>

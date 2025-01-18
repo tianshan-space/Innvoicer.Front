@@ -1,0 +1,17 @@
+.cont {
+  background-color: rgb(16, 0, 34);
+  min-height: 100vh;
+  padding-top: 50px;
+
+  .main {
+    margin: 0 auto;
+    width: 1000px;
+
+    .invoice {
+      width: 100%;
+      height: 1310px;
+      background-color: white;
+      border-radius: 5px;
+    }
+  }
+}
