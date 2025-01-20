@@ -2,7 +2,10 @@
   <app-panel class="panel" [(showPanel)]="showPanel"></app-panel>
 
   <div class="cont" [style.margin-left]="!showPanel() ? '60px' : '275px'">
-    <app-actions></app-actions>
+    <app-actions
+      [companies]="companies"
+      [selectedCompany]="selectedCompany"
+    ></app-actions>
     <router-outlet></router-outlet>
   </div>
 </div>

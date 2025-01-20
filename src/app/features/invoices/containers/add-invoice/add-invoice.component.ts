@@ -67,8 +67,9 @@ export class AddInvoiceComponent {
   }
 
   processTotal() {
+    // დღეების რეოდენობის მიხედვით გამოთვლა
     const totalAmount = this.items.value.reduce((acc: any, item: any) => {
-      return acc + (item.unitPrice * item.quantity);
+      return acc + ((item.unitPrice * item.quantity) * (item.checkOutDate - item.checkInDate));
     }, 0);
 
     this.invoiceForm.get('totalAmount')!.setValue(totalAmount);

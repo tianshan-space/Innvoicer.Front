@@ -6,6 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '../../services/auth.service';
 import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthModel } from '../../models/AuthModel';
 
 @Component({
   standalone: true,
@@ -36,8 +37,8 @@ export class LoginComponent {
         return err;
       })
     ).subscribe((m) => {
+      localStorage.setItem('auth', JSON.stringify(m));
       this.router.navigateByUrl('/invoices');
-      console.log(m);
-    })
+    });
   }
 }
