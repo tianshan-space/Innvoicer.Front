@@ -1,6 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { BreadcrumbService } from '../../services/breadcrumb.service';
-import { Breadcrumb } from '../../models/breadcrumbModel';
+import { Breadcrumb, BreadcrumbService } from '../../services/breadcrumb.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -54,3 +53,4 @@ export class ActionsComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 }
+

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Breadcrumb } from '../models/breadcrumbModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +15,11 @@ export class BreadcrumbService {
   getConfig(): Observable<Breadcrumb> {
     return this.config.asObservable();
   }
+}
+
+export interface Breadcrumb {
+  icon: string;
+  label: string;
+  childLabel?: string;
+  labelRoute?: string;
 }
