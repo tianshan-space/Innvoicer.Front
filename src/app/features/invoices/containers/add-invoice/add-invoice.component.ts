@@ -25,7 +25,6 @@ export class AddInvoiceComponent {
     client: new FormGroup({
       name: new FormControl('', Validators.required),
       personalId: new FormControl('', Validators.required),
-      address: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', Validators.required),
     }),
@@ -66,10 +65,20 @@ export class AddInvoiceComponent {
     this.processTotal();
   }
 
+  getCheckinDate(i: number) {
+    if (this.invoiceForm?.get('items')?.value?.[i]) {
+      const date = this.invoiceForm?.get('items')?.value?.[i] as any;
+      const dateToNumb = new Date(date.checkInDate).getTime() + 86400000;
+      const resDate = new Date(dateToNumb);
+      return resDate;
+    }
+    else return new Date();
+  }
+
   processTotal() {
     // დღეების რეოდენობის მიხედვით გამოთვლა
     const totalAmount = this.items.value.reduce((acc: any, item: any) => {
-      return acc + ((item.unitPrice * item.quantity) * (item.checkOutDate - item.checkInDate));
+      return acc + ((item.unitPrice * item.quantity) * (item.checkOutDate - item.checkInDate) / 24/ 60/ 60 / 1000);
     }, 0);
 
     this.invoiceForm.get('totalAmount')!.setValue(totalAmount);

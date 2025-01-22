@@ -74,8 +74,8 @@
             <div style="flex: 1">
               <input type="number" pInputText formControlName="quantity" [style]="{width: '100%', 'min-width': '50px'}"  (input)="processTotal()"/>
             </div>
-            <p-datepicker formControlName="checkInDate" class="tst"/>
-            <p-datepicker formControlName="checkOutDate" class="tst"/>
+            <p-datepicker formControlName="checkInDate" class="tst" (onSelect)="processTotal()"/>
+            <p-datepicker formControlName="checkOutDate" class="tst" (onSelect)="processTotal()"/>
             <div>
               <p-button icon="pi pi-trash" (click)="removeItem(i)" [style]="{height: '47px'}" tooltipPosition="bottom" pTooltip="წაშლა"/>
             </div>
@@ -117,7 +117,7 @@
             label="შენახვა"
             icon="pi pi-save"
             type="submit"
-            [disabled]="!invoiceForm.valid"
+            [disabled]="invoiceForm.invalid"
             [style]="{'width': '250px', position: 'absolute', bottom: '22px', left: '20px'}"
         />
     </div>
