@@ -40,7 +40,7 @@ export class AuthService {
     };
 
     return this.http.put<any>(
-      `${this.configService.apiUrl}/update-password`,
+      `${this.configService.apiUrl}/user/update-password`,
       body
     );
   }
