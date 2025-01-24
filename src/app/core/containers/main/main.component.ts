@@ -1,17 +1,24 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PanelComponent } from "../../components/panel/panel.component";
-import { ActionsComponent } from "../../components/actions/actions.component";
+import { PanelComponent } from '../../components/panel/panel.component';
+import { ActionsComponent } from '../../components/actions/actions.component';
 import { AuthModel, Company } from '../../../auth/models/AuthModel';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-main',
-  imports: [ActionsComponent, PanelComponent, PanelComponent, RouterOutlet, ActionsComponent],
+  imports: [
+    ActionsComponent,
+    PanelComponent,
+    PanelComponent,
+    RouterOutlet,
+    ActionsComponent,
+  ],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  styleUrl: './main.component.scss',
+  providers: [MessageService],
 })
 export class MainComponent implements OnInit {
-
   companies!: Company[];
   selectedCompany!: Company;
 
@@ -29,5 +36,4 @@ export class MainComponent implements OnInit {
       this.selectedCompany = JSON.parse(selectedCompany);
     }
   }
-
 }

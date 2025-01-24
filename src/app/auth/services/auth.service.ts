@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
 import { AuthModel } from '../models/AuthModel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private readonly router = inject(Router)
+  private readonly router = inject(Router);
   private readonly http = inject(HttpClient);
   private readonly configService = inject(ConfigService);
 
@@ -23,7 +23,25 @@ export class AuthService {
     }
   }
 
-  login(res: { email: string, password: string }): Observable<AuthModel> {
-    return this.http.post<AuthModel>(`${this.configService.apiUrl}/auth/login`, res);
+  login(res: { email: string; password: string }): Observable<AuthModel> {
+    return this.http.post<AuthModel>(
+      `${this.configService.apiUrl}/auth/login`,
+      res
+    );
+  }
+
+  updatePassword(
+    currentPassword: string,
+    newPassword: string
+  ): Observable<any> {
+    const body = {
+      currentPassword,
+      newPassword,
+    };
+
+    return this.http.put<any>(
+      `${this.configService.apiUrl}/update-password`,
+      body
+    );
   }
 }

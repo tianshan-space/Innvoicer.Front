@@ -1,1 +1,99 @@
-<p>profile works!</p>
+<div class="profile">
+  <h1>პროფილი</h1>
+
+  <h2>პაროლის განახლება</h2>
+
+  <form [formGroup]="updatePasswordForm" (ngSubmit)="updatePassword()">
+    <div class="form-group">
+      <label for="currentPassword">მიმდინარე პაროლი</label>
+      <p-password
+        id="currentPassword"
+        formControlName="currentPassword"
+        class="form-control"
+        placeholder="მიმდინარე პაროლი"
+        [toggleMask]="true"
+        size="large"
+        [feedback]="false"
+      >
+      </p-password>
+
+      <div
+        *ngIf="
+          updatePasswordForm.get('currentPassword')?.invalid &&
+          updatePasswordForm.get('currentPassword')?.touched
+        "
+        class="error"
+      >
+        <small>ეს ველი აუცილებელია</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="newPassword">ახალი პაროლი</label>
+      <p-password
+        id="newPassword"
+        formControlName="newPassword"
+        class="form-control"
+        placeholder="ახალი პაროლი"
+        [toggleMask]="true"
+        size="large"
+        [feedback]="false"
+      >
+      </p-password>
+
+      <div
+        *ngIf="
+          updatePasswordForm.get('newPassword')?.invalid &&
+          updatePasswordForm.get('newPassword')?.touched
+        "
+        class="error"
+      >
+        <small>ახალი პაროლი უნდა იყოს მინიმუმ 3 სიმბოლო</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="repeatNewPassword">ახალი პაროლის გამეორება</label>
+      <p-password
+        id="repeatNewPassword"
+        formControlName="repeatNewPassword"
+        class="form-control"
+        placeholder="ახალი პაროლის გამეორება"
+        [toggleMask]="true"
+        size="large"
+        [feedback]="false"
+      >
+      </p-password>
+
+      <div
+        *ngIf="
+          updatePasswordForm.get('repeatNewPassword')?.invalid &&
+          updatePasswordForm.get('repeatNewPassword')?.touched
+        "
+        class="error"
+      >
+        <small>ეს ველი აუცილებელია</small>
+      </div>
+      <div
+        *ngIf="
+          updatePasswordForm.hasError('passwordMismatch') &&
+          updatePasswordForm.get('repeatNewPassword')?.touched
+        "
+        class="error"
+      >
+        <small>პაროლები არ ემთხვევა</small>
+      </div>
+    </div>
+
+    <p-button
+      type="submit"
+      label="განახლება"
+      [disabled]="updatePasswordForm.invalid || loading"
+      class="btn btn-primary"
+      [loading]="loading"
+    >
+    </p-button>
+  </form>
+</div>
+
+<p-toast></p-toast>
