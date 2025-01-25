@@ -36,7 +36,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: MyPreset
+        preset: MyPreset,
+        options: { darkModeSelector: ".fake-dark-selector" }
       }
     }),
     provideRouter(routes, withViewTransitions()),
