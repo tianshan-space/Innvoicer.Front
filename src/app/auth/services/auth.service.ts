@@ -30,18 +30,12 @@ export class AuthService {
     );
   }
 
-  updatePassword(
-    currentPassword: string,
-    newPassword: string
-  ): Observable<any> {
+  updatePassword(currentPassword: string, newPassword: string): Observable<any> {
     const body = {
       currentPassword,
       newPassword,
     };
 
-    return this.http.put<any>(
-      `${this.configService.apiUrl}/user/update-password`,
-      body
-    );
+    return this.http.put<any>(`${this.configService.apiUrl}/user/change-password`, body);
   }
 }

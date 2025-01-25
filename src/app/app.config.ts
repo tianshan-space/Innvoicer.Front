@@ -3,13 +3,14 @@ import { provideRouter, withViewTransitions } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
 import { ConfigService } from './core/services/config.service';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { providePrimeNG } from 'primeng/config';
 import { definePreset } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 import Material from '@primeng/themes/material';
 import Nora from '@primeng/themes/nora';
 import Lara from '@primeng/themes/lara';
+import { authInterceptor } from './auth/interceptors/auth.interceptor';
 
 const MyPreset = definePreset(Lara, {
   semantic: {
@@ -40,7 +41,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideRouter(routes, withViewTransitions()),
     provideHttpClient(
-    //  withInterceptors([responseInterceptor, authInterceptor]),
+      withInterceptors([authInterceptor]),
     ),
     provideAppInitializer(()=> {
       const initFn = ((configService: ConfigService) => {

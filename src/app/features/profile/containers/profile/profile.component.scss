@@ -1,22 +1,36 @@
-.profile {
-  max-width: 600px;
-  margin: 0 auto;
+.cont {
+  background-color: white;
   padding: 20px;
+  border-radius: 25px;
+
+  h2 {
+    margin-bottom: 25px;
+  }
+
+  .profile {
+    width: 340px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  .error small {
+    color: red;
+  }
 }
 
-.form-group {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-}
-
-.error small {
-  color: red;
+::ng-deep input {
+  width: 340px;
 }
