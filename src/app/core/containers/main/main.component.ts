@@ -19,21 +19,30 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class MainComponent implements OnInit {
-  companies!: Company[];
-  selectedCompany!: Company;
+
+  dataForChild!: {
+    companies?: Company[];
+    selectedCompany?: Company;
+  };
 
   protected showPanel = signal(true);
 
   ngOnInit(): void {
     const auth: AuthModel = JSON.parse(localStorage.getItem('auth')!);
+    let com = null;
+    let sel = null;
     if (auth) {
-      this.companies = auth.companies;
-      console.log(auth);
+      com = auth.companies;
     }
 
-    const selectedCompany = localStorage.getItem('selected');
+    const selectedCompany = JSON.parse(localStorage.getItem('selected')!);
     if (selectedCompany) {
-      this.selectedCompany = JSON.parse(selectedCompany);
+      sel = selectedCompany;
     }
+
+    this.dataForChild = {
+      companies: com as Company[],
+      selectedCompany: sel,
+    };
   }
 }

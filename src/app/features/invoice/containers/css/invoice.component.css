@@ -1,0 +1,15 @@
+.cont {
+  background-color: rgb(16, 0, 34);
+  min-height: 100vh;
+  padding-top: 50px;
+}
+.cont .main {
+  margin: 0 auto;
+  width: 1000px;
+}
+.cont .main .invoice {
+  width: 100%;
+  height: 1310px;
+  background-color: white;
+  border-radius: 5px;
+}/*# sourceMappingURL=invoice.component.css.map */

@@ -3,8 +3,7 @@
 
   <div class="cont" [style.margin-left]="!showPanel() ? '60px' : '275px'">
     <app-actions
-      [companies]="companies"
-      [selectedCompany]="selectedCompany"
+      [dataForChild]="dataForChild"
     ></app-actions>
     <router-outlet></router-outlet>
   </div>

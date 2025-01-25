@@ -5,21 +5,23 @@ import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
 import { Company } from '../../../auth/models/AuthModel';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-actions',
-  imports: [CommonModule, ButtonModule, SelectModule],
+  imports: [CommonModule, ButtonModule, SelectModule, FormsModule],
   templateUrl: './actions.component.html',
   styleUrl: './actions.component.scss'
 })
 export class ActionsComponent implements OnInit {
 
-  @Input() set companies(companies: Company[]) {
-    this.comp = companies;
-  }
-  @Input() set selectedCompany(selectedCompany: Company) {
-    this.selectedComp = selectedCompany;
-    console.log(this.selectedComp);
+  @Input() set dataForChild(data: any) {
+    if (data?.companies) {
+      this.comp = data.companies;
+    } 
+    if (data?.selectedCompany) {
+      this.selectedComp = data.selectedCompany;
+    }
   }
 
   comp!: Company[];
@@ -29,14 +31,6 @@ export class ActionsComponent implements OnInit {
   private breadcrumbService = inject(BreadcrumbService);
   private router = inject(Router);
 
-  cities = [
-    { name: 'New York', code: 'NY' },
-    { name: 'Rome', code: 'RM' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' }
-  ];
-
   ngOnInit() {
     this.breadcrumbService.getConfig().subscribe((m) => {
       this.breadcrumbConfig = m;
@@ -45,6 +39,11 @@ export class ActionsComponent implements OnInit {
 
   navigateToParent() {
     this.router.navigateByUrl(this.breadcrumbConfig.labelRoute as string);
+  }
+
+  changeSelect() {
+    localStorage.setItem('selected', JSON.stringify(this.selectedComp));
+    window.location.reload();
   }
 
   logOut() {

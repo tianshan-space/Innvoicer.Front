@@ -1,0 +1,25 @@
+.actions {
+  width: 100%;
+  height: 90px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.actions .breadcrumb {
+  display: flex;
+  align-items: center;
+}
+.actions .breadcrumb .main-icon {
+  color: rgb(16, 0, 34);
+  font-size: 18px;
+  margin-right: 10px;
+}
+.actions .breadcrumb .secondary-icon {
+  margin: 0 5px;
+}
+.actions .breadcrumb .is-parent {
+  text-decoration: underline;
+  cursor: pointer;
+}/*# sourceMappingURL=actions.component.css.map */

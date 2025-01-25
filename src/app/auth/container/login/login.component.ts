@@ -60,8 +60,11 @@ export class LoginComponent {
         }),
         finalize(() => (this.loading = false))
       )
-      .subscribe((m) => {
+      .subscribe((m: any) => {
         localStorage.setItem('auth', JSON.stringify(m));
+        if (m.companies.length >= 1) {
+          localStorage.setItem('selected', JSON.stringify(m.companies[0]));
+        }
         this.router.navigateByUrl('/invoices');
       });
   }

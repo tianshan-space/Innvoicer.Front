@@ -6,10 +6,24 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { BreadcrumbService } from '../../../../core/services/breadcrumb.service';
+import { InvoicesService } from '../../services/invoices.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { catchError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-invoice',
-  imports: [CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule, FormsModule, DatePickerModule, TooltipModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    ButtonModule,
+    FormsModule,
+    DatePickerModule,
+    TooltipModule,
+    ToastModule
+  ],
   templateUrl: './add-invoice.component.html',
   styleUrl: './add-invoice.component.scss'
 })
@@ -27,10 +41,14 @@ export class AddInvoiceComponent {
       personalId: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', Validators.required),
+      address: new FormControl('')
     }),
   });
 
   private breadcrumbService = inject(BreadcrumbService);
+  private invoicesService = inject(InvoicesService);
+  private messageService = inject(MessageService);
+  private router = inject(Router);
 
   ngOnInit() {
     this.breadcrumbService.setConfig({
@@ -41,6 +59,9 @@ export class AddInvoiceComponent {
     });
 
     this.addItem();
+
+    const selected = JSON.parse(localStorage.getItem('selected')!);
+    this.invoiceForm.get('companyId')!.setValue(selected.id);
   }
 
   get items(): FormArray {
@@ -52,7 +73,7 @@ export class AddInvoiceComponent {
       name: new FormControl('', Validators.required),
       unitPrice: new FormControl(0, Validators.required),
       quantity: new FormControl(1, Validators.required),
-      currency: new FormControl('USD', Validators.required),
+      currency: new FormControl('GEL', Validators.required),
       checkInDate: new FormControl(null, Validators.required),
       checkOutDate: new FormControl(null, Validators.required),
     });
@@ -77,14 +98,35 @@ export class AddInvoiceComponent {
 
   processTotal() {
     // დღეების რეოდენობის მიხედვით გამოთვლა
-    const totalAmount = this.items.value.reduce((acc: any, item: any) => {
+    let totalAmount = this.items.value.reduce((acc: any, item: any) => {
       return acc + ((item.unitPrice * item.quantity) * (item.checkOutDate - item.checkInDate) / 24/ 60/ 60 / 1000);
     }, 0);
+
+    if (totalAmount < 0) {
+      totalAmount = 0;
+    }
 
     this.invoiceForm.get('totalAmount')!.setValue(totalAmount);
   }
 
   onSubmit(): void {
-    console.log(this.invoiceForm.value);
+    const data = this.invoiceForm.getRawValue();
+    this.invoicesService.addInvoice(data).pipe(
+      catchError((err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'დაფიქსირდა შეცდომა',
+        });
+        return err;
+      })
+    ).subscribe((m) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'ინვოისი წარმატებით დაემატა',
+      });
+      this.router.navigate(['/invoices']);
+    });
   }
 }
