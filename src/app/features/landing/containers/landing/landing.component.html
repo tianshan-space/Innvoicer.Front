@@ -1,1 +1,174 @@
-<p>landing works!</p>
+<div class="landing-page">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo" (click)="scrollTo('top')">Innvoicer</div>
+    <nav class="nav-links">
+      <a (click)="scrollTo('services')">Services</a>
+      <a (click)="scrollTo('pricing')">Pricing</a>
+      <a (click)="scrollTo('partners')">Partners</a>
+      <a (click)="scrollTo('contact')">Contact</a>
+    </nav>
+    <div class="nav-buttons">
+      <a href="/login" class="btn">Login</a>
+      <a (click)="scrollTo('contact')" class="btn">Try it for free</a>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <section class="main-section">
+    <div class="main-content">
+      <div class="main-text">
+        <span>Innvoicer</span>
+        <h1>
+          Help SM Hotels generate dynamic invoices and retain customer
+          engagement.
+        </h1>
+
+        <p class="lg:mr-16 py-6 max-w-3xl text-lg text-slate-700">
+          Create invoices withinin 30 seconds. Send invoices fully for free.
+        </p>
+        <div class="buttons">
+          <a href="/login" class="create-button">Create Invoice</a>
+          <button (click)="scrollTo('services')" class="feature-button">
+            Discover Features
+          </button>
+        </div>
+      </div>
+      <div class="main-image">
+        <img
+          src="https://fs.siteor.com/fakturownia-cz/files/bitfaktura.cz%202023/img/hero-Jednoducha__fakturace.svg"
+          alt="Mockup"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Section -->
+  <section id="services" class="services-section">
+    <h2>Simple Invoicing</h2>
+    <div class="service-cards">
+      <div class="card">
+        <div class="card-header">
+          <div class="icon">📄</div>
+          <h3>Professional Templates</h3>
+        </div>
+        <p>
+          Create stunning and professional invoices with customizable templates
+          tailored to your needs.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="icon">⚙️</div>
+          <h3>Advanced Simplicity</h3>
+        </div>
+        <p>
+          Enjoy a streamlined invoicing experience designed to save time and
+          minimize effort.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="icon">💬</div>
+          <h3>High Customer Engagement</h3>
+        </div>
+        <p>
+          Keep your customers engaged with personalized and professional
+          invoices.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <!-- <section id="pricing" class="pricing-section">
+    <h2>Pricing</h2>
+    <div class="pricing-cards">
+      <div class="card">Basic Plan</div>
+      <div class="card">Pro Plan</div>
+      <div class="card">Enterprise Plan</div>
+    </div>
+  </section> -->
+
+  <!-- Partners Section -->
+  <section id="partners" class="partners-section">
+    <h2>200+ hotels already using Innvoicer!</h2>
+    <div class="partner-logos">
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
+        alt="Partner 1"
+      />
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
+        alt="Partner 1"
+      />
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
+        alt="Partner 1"
+      />
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
+        alt="Partner 1"
+      />
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
+        alt="Partner 1"
+      />
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg"
+        alt="Partner 1"
+      />
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <h2>Start using Innvoicer now, fill the form</h2>
+    <form class="contact-form">
+      <input type="text" id="name" placeholder="Your name" required />
+
+      <input type="tel" id="phone" placeholder="Your phone number" required />
+
+      <button type="submit" class="submit-button">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <!-- About Section -->
+      <div class="footer-about">
+        <h3>About Innvoicer</h3>
+        <p>
+          Innvoicer is your trusted partner in generating dynamic invoices for
+          small and medium-sized hotels, ensuring professional customer
+          engagement.
+        </p>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><strong>Phone: </strong> +123 456 7890</p>
+        <p>
+          <strong>Email: </strong>
+          <a href="mailto:support@innvoicer.com">support.innvoicer.com</a>
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Innvoicer. All rights reserved. | Designed by Tianshan Team</p>
+    </div>
+  </footer>
+</div>
