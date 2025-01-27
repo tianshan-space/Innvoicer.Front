@@ -3,10 +3,11 @@ import { ButtonModule } from 'primeng/button';
 import { BreadcrumbService } from '../../../../core/services/breadcrumb.service';
 import { Router } from '@angular/router';
 import { InvoicesService } from '../../services/invoices.service';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-invoices',
-  imports: [ButtonModule],
+  imports: [ButtonModule, TableModule],
   templateUrl: './invoices.component.html',
   styleUrl: './invoices.component.scss'
 })
@@ -26,7 +27,7 @@ export class InvoicesComponent implements OnInit {
 
     const selected = JSON.parse(localStorage.getItem('selected')!);
     this.invoicesService.loadList(selected.id).subscribe((m) => {
-      console.log(m);
+      this.data = m as any;
     });
   }
 

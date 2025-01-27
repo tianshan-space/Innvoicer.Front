@@ -6,5 +6,9 @@
     (click)="addInvoice()"
   />
 
-  
+  @if (!data || data?.length == 0) {
+    <div class="no-data">
+      <h3>ჩანაწერი არ მოიძებნა</h3>
+    </div>
+  }
 </div>
