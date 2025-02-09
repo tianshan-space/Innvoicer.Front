@@ -10,5 +10,45 @@
     <div class="no-data">
       <h3>ჩანაწერი არ მოიძებნა</h3>
     </div>
+  } @else {
+    <table>
+      <tr>
+        <th>ინვოისი</th>
+        <th>შექმნის თრღ.</th>
+        <th>ვალიდური</th>
+        <th>თანხა</th>
+        <th>დეპოზიტი</th>
+        <th>სტატუსი</th>
+        <th class="last-item"></th>
+      </tr>
+      @for(item of data; track item.id) {
+        <tr>
+          <td>{{item.key}}</td>
+          <td>{{item.issueDate | date}}</td>
+          <td>{{item.dueDate | date}}</td>
+          <td>{{item.totalAmount}}₾</td>
+          <td>{{item.depositAmount}}₾</td>
+          <td>{{convertStatus(item.status)}}</td>
+          <td class="last-item">
+            <div class="actions">
+              <div>
+                @if (item.status == 0) {
+                  <p-button icon="pi pi-send" (click)="sendInvoice(item.key)" severity="success" tooltipPosition="bottom" pTooltip="გაგზავნა"/>
+                }
+              </div>
+              <div>
+                <p-button icon="pi pi-eye" tooltipPosition="bottom" pTooltip="ნახვა"/>
+              </div>
+              <div>
+                <p-button icon="pi pi-trash" severity="danger" tooltipPosition="bottom" pTooltip="წაშლა"/>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <div style="height: 5px;"></div>
+      }
+    </table>
   }
 </div>
+
+<p-confirmdialog />

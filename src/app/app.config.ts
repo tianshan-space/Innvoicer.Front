@@ -1,4 +1,4 @@
-import { ApplicationConfig, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
@@ -11,6 +11,10 @@ import Material from '@primeng/themes/material';
 import Nora from '@primeng/themes/nora';
 import Lara from '@primeng/themes/lara';
 import { authInterceptor } from './auth/interceptors/auth.interceptor';
+import localeKa from '@angular/common/locales/ka';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeKa, 'ka');
 
 const MyPreset = definePreset(Lara, {
   semantic: {
@@ -50,5 +54,9 @@ export const appConfig: ApplicationConfig = {
       })(inject(ConfigService));
       return initFn();
     }),
+    {
+      provide: LOCALE_ID,
+      useValue: 'ka',
+    }
   ]
 };

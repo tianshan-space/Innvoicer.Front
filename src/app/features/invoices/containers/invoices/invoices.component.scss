@@ -6,4 +6,28 @@
   .no-data {
     margin-top: 40px;
   }
+
+  table {
+    width: 100%;
+    margin-top: 25px;
+
+    th, td {
+      width: calc(16.7% - 31px);
+      text-align: center;
+    }
+
+    .last-item {
+      width: 180px;
+
+      .actions {
+        width: 180px;
+        display: flex;
+        justify-content: space-between;
+
+        div {
+          flex: 1;
+        }
+      }
+    }
+  }
 }
