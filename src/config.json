@@ -1,3 +1,4 @@
 {
-    "apiUrl": "https://innvoicer-api.azurewebsites.net/v1"
+    "apiUrlOld": "https://innvoicer-api.azurewebsites.net/v1",
+    "apiUrl": "https://innvoicer-api.tianshan.space/v1"
 }
