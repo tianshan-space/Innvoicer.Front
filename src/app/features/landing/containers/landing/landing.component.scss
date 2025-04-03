@@ -250,61 +250,155 @@ a {
     margin: 1rem;
   }
 }
+
 /* Contact Section */
 .contact-section {
   padding: 4rem 2rem;
+  text-align: center;
 
   h2 {
-    color: #1d3557;
     font-size: 2rem;
-    text-align: center;
+    color: #1d3557;
+    margin-bottom: 2rem;
   }
 
-  .contact-form {
+  .contact-info {
+    font-size: 1rem;
+    color: #1d3557;
+    line-height: 1.75rem;
+
+    a {
+      color: #1d3557;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #457b9d;
+    }
+
+    .calendly-button {
+      margin-top: 2rem;
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #f1faee;
+        background-color: #1d3557;
+        border: none;
+        border-radius: 9999px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #f1faee;
+        color: #1d3557;
+      }
+    }
+  }
+}
+
+/* Pricing Section */
+.pricing-section {
+  padding: 4rem 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    color: #1d3557;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-toggle {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 2rem;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 
-    label {
-      font-size: 1rem;
-      color: #333;
-    }
-
-    input {
-      padding: 0.75rem;
-      font-size: 1rem;
+    button {
+      padding: 0.5rem 1rem;
       border: 1px solid #1d3557;
-      border-radius: 5px;
-      background-color: #f1faee;
-      color: #1d3557;
-      outline: none;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    input:focus {
-      border-color: #0052cc;
-      box-shadow: 0 0 5px rgba(0, 82, 204, 0.2);
-    }
-
-    .submit-button {
-      padding: 0.75rem;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #f1faee;
-      background-color: #1d3557;
-      border: none;
       border-radius: 9999px;
+      background: transparent;
+      color: #1d3557;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      border: 1px solid #1d3557;
+      transition: background 0.3s, color 0.3s;
     }
 
-    .submit-button:hover {
-      background-color: #f1faee;
-      color: #1d3557;
+    button.active {
+      background: #1d3557;
+      color: #f1faee;
+    }
+
+    button:hover {
+      background: #1d3557;
+      color: #f1faee;
+    }
+  }
+
+  .pricing-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    .card {
+      padding: 2rem;
+      border: 1px solid #1d3557;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      h3 {
+        font-size: 1.5rem;
+        color: #1d3557;
+        margin-bottom: 1rem;
+      }
+
+      .price {
+        font-size: 1.25rem;
+        color: #457b9d;
+        margin-bottom: 1.5rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.5rem 0;
+
+        li {
+          font-size: 1rem;
+          color: #1d3557;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .select-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #f1faee;
+        background-color: #1d3557;
+        border: none;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .select-button:hover {
+        background-color: #f1faee;
+        color: #1d3557;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
     }
   }
 }

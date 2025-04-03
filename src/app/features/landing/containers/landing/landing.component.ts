@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class LandingComponent {
   isMenuOpen = false;
+  isMonthly: boolean = true;
 
   scrollTo(sectionId: string): void {
     const section = document.getElementById(sectionId);
@@ -23,5 +24,9 @@ export class LandingComponent {
     } else {
       navLinks?.classList.remove('show');
     }
+  }
+
+  togglePricing(plan: 'monthly' | 'annual'): void {
+    this.isMonthly = plan === 'monthly';
   }
 }
