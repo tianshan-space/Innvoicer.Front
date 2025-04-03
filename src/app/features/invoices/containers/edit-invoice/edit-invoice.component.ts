@@ -130,8 +130,8 @@ export class EditInvoiceComponent {
           unitPrice: new FormControl(item.unitPrice, Validators.required),
           quantity: new FormControl(item.quantity, Validators.required),
           currency: new FormControl(item.currency, Validators.required),
-          checkInDate: new FormControl(item.checkInDate, Validators.required),
-          checkOutDate: new FormControl(item.checkOutDate, Validators.required),
+          checkInDate: new FormControl(new Date(item.checkInDate), Validators.required),
+          checkOutDate: new FormControl(new Date(item.checkOutDate), Validators.required),
         });
         this.items.push(itemGroup);
       });
