@@ -14,10 +14,7 @@ export class InvoicesService {
   }
 
   updateInvoice(id: string, invoice: any) {
-    return this.http.put(
-      `${this.configService.apiUrl}/invoice/${id}`,
-      invoice
-    );
+    return this.http.put(`${this.configService.apiUrl}/invoice/${id}`, invoice);
   }
 
   loadList(companyId: number) {
@@ -28,5 +25,16 @@ export class InvoicesService {
 
   getInvoiceById(id: string) {
     return this.http.get(`${this.configService.apiUrl}/invoice/${id}`);
+  }
+
+  publish(id: string) {
+    return this.http.put(
+      `${this.configService.apiUrl}/invoice/publish/${id}`,
+      {}
+    );
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${this.configService.apiUrl}/invoice/${id}`);
   }
 }

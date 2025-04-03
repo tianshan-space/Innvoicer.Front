@@ -1,6 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputTextModule } from 'primeng/inputtext';
@@ -22,26 +29,31 @@ import { Router } from '@angular/router';
     FormsModule,
     DatePickerModule,
     TooltipModule,
-    ToastModule
+    ToastModule,
   ],
   templateUrl: './add-invoice.component.html',
-  styleUrl: './add-invoice.component.scss'
+  styleUrl: './add-invoice.component.scss',
 })
 export class AddInvoiceComponent {
-
   invoiceForm = new FormGroup({
     companyId: new FormControl(null, Validators.required),
     issueDate: new FormControl(null, Validators.required),
     dueDate: new FormControl(null, Validators.required),
-    totalAmount: new FormControl({ value: 0, disabled: true }, Validators.required),
+    totalAmount: new FormControl(
+      { value: 0, disabled: true },
+      Validators.required
+    ),
     depositAmount: new FormControl(null, Validators.required),
     items: new FormArray([]),
     client: new FormGroup({
       name: new FormControl('', Validators.required),
       personalId: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', Validators.required),
-      address: new FormControl('')
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{9}$/),
+      ]),
+      address: new FormControl(''),
     }),
   });
 
@@ -55,7 +67,7 @@ export class AddInvoiceComponent {
       icon: 'pi pi-file-edit',
       label: 'ინვოისები',
       labelRoute: '/invoices',
-      childLabel: 'ახალი ინვოისი'
+      childLabel: 'ახალი ინვოისი',
     });
 
     this.addItem();
@@ -92,14 +104,22 @@ export class AddInvoiceComponent {
       const dateToNumb = new Date(date.checkInDate).getTime() + 86400000;
       const resDate = new Date(dateToNumb);
       return resDate;
-    }
-    else return new Date();
+    } else return new Date();
   }
 
   processTotal() {
     // დღეების რეოდენობის მიხედვით გამოთვლა
     let totalAmount = this.items.value.reduce((acc: any, item: any) => {
-      return acc + ((item.unitPrice * item.quantity) * (item.checkOutDate - item.checkInDate) / 24/ 60/ 60 / 1000);
+      return (
+        acc +
+        (item.unitPrice *
+          item.quantity *
+          (item.checkOutDate - item.checkInDate)) /
+          24 /
+          60 /
+          60 /
+          1000
+      );
     }, 0);
 
     if (totalAmount < 0) {
@@ -111,22 +131,25 @@ export class AddInvoiceComponent {
 
   onSubmit(): void {
     const data = this.invoiceForm.getRawValue();
-    this.invoicesService.addInvoice(data).pipe(
-      catchError((err) => {
+    this.invoicesService
+      .addInvoice(data)
+      .pipe(
+        catchError((err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'დაფიქსირდა შეცდომა',
+          });
+          return err;
+        })
+      )
+      .subscribe((m) => {
         this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'დაფიქსირდა შეცდომა',
+          severity: 'success',
+          summary: 'Success',
+          detail: 'ინვოისი წარმატებით დაემატა',
         });
-        return err;
-      })
-    ).subscribe((m) => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'ინვოისი წარმატებით დაემატა',
+        this.router.navigate(['/invoices']);
       });
-      this.router.navigate(['/invoices']);
-    });
   }
 }

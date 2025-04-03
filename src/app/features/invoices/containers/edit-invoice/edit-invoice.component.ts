@@ -50,7 +50,10 @@ export class EditInvoiceComponent {
       name: new FormControl('', Validators.required),
       personalId: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', Validators.required),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{9}$/),
+      ]),
       address: new FormControl(''),
     }),
   });
@@ -101,7 +104,16 @@ export class EditInvoiceComponent {
   processTotal() {
     // დღეების რეოდენობის მიხედვით გამოთვლა
     let totalAmount = this.items.value.reduce((acc: any, item: any) => {
-      return acc + ((item.unitPrice * item.quantity) * (item.checkOutDate - item.checkInDate) / 24/ 60/ 60 / 1000);
+      return (
+        acc +
+        (item.unitPrice *
+          item.quantity *
+          (item.checkOutDate - item.checkInDate)) /
+          24 /
+          60 /
+          60 /
+          1000
+      );
     }, 0);
 
     if (totalAmount < 0) {
@@ -122,8 +134,14 @@ export class EditInvoiceComponent {
           unitPrice: new FormControl(item.unitPrice, Validators.required),
           quantity: new FormControl(item.quantity, Validators.required),
           currency: new FormControl(item.currency, Validators.required),
-          checkInDate: new FormControl(new Date(item.checkInDate), Validators.required),
-          checkOutDate: new FormControl(new Date(item.checkOutDate), Validators.required),
+          checkInDate: new FormControl(
+            new Date(item.checkInDate),
+            Validators.required
+          ),
+          checkOutDate: new FormControl(
+            new Date(item.checkOutDate),
+            Validators.required
+          ),
         });
         this.items.push(itemGroup);
       });

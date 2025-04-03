@@ -11,13 +11,18 @@ import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-invoices',
-  imports: [ButtonModule, TableModule, DatePipe, TooltipModule, ConfirmDialogModule],
+  imports: [
+    ButtonModule,
+    TableModule,
+    DatePipe,
+    TooltipModule,
+    ConfirmDialogModule,
+  ],
   providers: [ConfirmationService],
   templateUrl: './invoices.component.html',
-  styleUrl: './invoices.component.scss'
+  styleUrl: './invoices.component.scss',
 })
 export class InvoicesComponent implements OnInit {
-
   data: any = [];
 
   private breadcrumbService = inject(BreadcrumbService);
@@ -28,9 +33,13 @@ export class InvoicesComponent implements OnInit {
   ngOnInit() {
     this.breadcrumbService.setConfig({
       icon: 'pi pi-file-edit',
-      label: 'ინვოისები'
+      label: 'ინვოისები',
     });
 
+    this.loadList();
+  }
+
+  loadList() {
     const selected = JSON.parse(localStorage.getItem('selected')!);
     this.invoicesService.loadList(selected.id).subscribe((m) => {
       this.data = m as any;
@@ -55,26 +64,59 @@ export class InvoicesComponent implements OnInit {
     this.router.navigateByUrl('/invoices/add');
   }
 
-  editInvoice(key: any) {
-    this.router.navigateByUrl('/invoices/edit/' + key);
+  editInvoice(id: any) {
+    this.router.navigateByUrl('/invoices/edit/' + id);
   }
 
-  sendInvoice(key: any) {
+  sendInvoice(id: any) {
     this.confirmationService.confirm({
       message: 'ნამდვილად გსურს ინვოისის გაგზავნა?',
       header: 'ინვოისის გაგზავნა',
       closable: true,
       closeOnEscape: true,
       rejectButtonProps: {
-          label: 'გაუქმება',
-          severity: 'secondary',
-          outlined: true,
+        label: 'გაუქმება',
+        severity: 'secondary',
+        outlined: true,
       },
       acceptButtonProps: {
         label: 'გაგზავნა',
       },
       accept: () => {
-        console.log(1);
+        this.invoicesService.publish(id).subscribe((m) => {
+          this.data = m as any;
+          this.data = this.data.reverse();
+        });
+        this.confirmationService.close();
+
+        this.data = [];
+        this.loadList();
+      },
+      reject: () => {
+        console.log(2);
+      },
+    });
+  }
+
+  deleteInvoice(id: any) {
+    this.confirmationService.confirm({
+      message: 'ნამდვილად გსურს ინვოისის წაშლა?',
+      header: 'ინვოისის წაშლა',
+      closable: true,
+      closeOnEscape: true,
+      rejectButtonProps: {
+        label: 'გაუქმება',
+        severity: 'secondary',
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: 'წაშლა',
+      },
+      accept: () => {
+        this.invoicesService.delete(id).subscribe((m) => {});
+        this.confirmationService.close();
+        this.data = [];
+        this.loadList();
       },
       reject: () => {
         console.log(2);

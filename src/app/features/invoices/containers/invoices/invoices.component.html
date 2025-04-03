@@ -35,7 +35,7 @@
             @if (item.status == 0) {
             <p-button
               icon="pi pi-send"
-              (click)="sendInvoice(item.key)"
+              (click)="sendInvoice(item.id)"
               severity="success"
               tooltipPosition="bottom"
               pTooltip="გაგზავნა"
@@ -61,12 +61,15 @@
             }
           </div>
           <div>
+            @if (item.status == 0) {
             <p-button
               icon="pi pi-trash"
+              (click)="deleteInvoice(item.id)"
               severity="danger"
               tooltipPosition="bottom"
               pTooltip="წაშლა"
             />
+            }
           </div>
         </div>
       </td>
