@@ -55,6 +55,10 @@ export class InvoicesComponent implements OnInit {
     this.router.navigateByUrl('/invoices/add');
   }
 
+  editInvoice(key: any) {
+    this.router.navigateByUrl('/invoices/edit/' + key);
+  }
+
   sendInvoice(key: any) {
     this.confirmationService.confirm({
       message: 'ნამდვილად გსურს ინვოისის გაგზავნა?',
