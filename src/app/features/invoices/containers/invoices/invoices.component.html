@@ -50,6 +50,7 @@
             />
           </div>
           <div>
+            @if (item.status == 0) {
             <p-button
               icon="pi pi-pencil"
               (click)="editInvoice(item.id)"
@@ -57,6 +58,7 @@
               tooltipPosition="bottom"
               pTooltip="რედაქტირება"
             ></p-button>
+            }
           </div>
           <div>
             <p-button
