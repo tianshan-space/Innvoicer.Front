@@ -8,6 +8,8 @@ import { DatePipe } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { ViewInvoiceComponent } from '../../../../shared/components/view-invoice/view-invoice.component';
 
 @Component({
   selector: 'app-invoices',
@@ -17,12 +19,17 @@ import { ConfirmationService } from 'primeng/api';
     DatePipe,
     TooltipModule,
     ConfirmDialogModule,
+    DialogModule,
+    ViewInvoiceComponent
   ],
   providers: [ConfirmationService],
   templateUrl: './invoices.component.html',
   styleUrl: './invoices.component.scss',
 })
 export class InvoicesComponent implements OnInit {
+
+  visible = false;
+  previewData: any;
   data: any = [];
 
   private breadcrumbService = inject(BreadcrumbService);
@@ -85,7 +92,7 @@ export class InvoicesComponent implements OnInit {
       accept: () => {
         this.invoicesService.publish(id).subscribe((m) => {
           this.data = m as any;
-          this.data = this.data.reverse();
+          this.data = this.data?.reverse();
         });
         this.confirmationService.close();
 
@@ -122,5 +129,10 @@ export class InvoicesComponent implements OnInit {
         console.log(2);
       },
     });
+  }
+
+  viewInvoice(item: any) {
+    this.previewData = item;
+    this.visible = true;
   }
 }

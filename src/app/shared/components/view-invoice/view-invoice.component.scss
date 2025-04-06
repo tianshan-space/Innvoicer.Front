@@ -1,0 +1,109 @@
+.invoice-container {
+  width: 1000px;
+  height: 1310px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.header h1 {
+  color: #2e5cb8;
+}
+
+.header img {
+  width: 80px;
+  height: 80px;
+}
+
+.details {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.details div {
+  width: 48%;
+}
+
+.details p {
+  margin: 5px 0;
+}
+
+.invoice-details {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.invoice-details div {
+  text-align: left;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f0f0f0;
+}
+
+.totals {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 50px;
+}
+
+.totals div {
+  width: 40%;
+}
+
+.totals p {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.signature {
+  margin-top: 40px;
+  text-align: right;
+  font-size: 16px;
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 14px;
+  text-align: center;
+  border-top: 2px solid #ccc;
+  padding-top: 10px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.footer h2 {
+  color: #2e5cb8;
+}

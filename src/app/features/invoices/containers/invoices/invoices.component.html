@@ -47,6 +47,7 @@
               icon="pi pi-eye"
               tooltipPosition="bottom"
               pTooltip="ნახვა"
+              (click)="viewInvoice(item)"
             />
           </div>
           <div>
@@ -81,3 +82,11 @@
 </div>
 
 <p-confirmdialog />
+
+<p-dialog header="ინვოისის ნახვა" [modal]="true" [(visible)]="visible" [style]="{ width: '600px' }">
+  <div class="preview-invoice">
+    <app-view-invoice
+      [data]="previewData"
+    ></app-view-invoice>
+</div>
+</p-dialog>

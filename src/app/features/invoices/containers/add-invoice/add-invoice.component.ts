@@ -18,6 +18,8 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
+import { ViewInvoiceComponent } from '../../../../shared/components/view-invoice/view-invoice.component';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-add-invoice',
@@ -30,6 +32,8 @@ import { Router } from '@angular/router';
     DatePickerModule,
     TooltipModule,
     ToastModule,
+    ViewInvoiceComponent,
+    DialogModule
   ],
   templateUrl: './add-invoice.component.html',
   styleUrl: './add-invoice.component.scss',
@@ -57,6 +61,9 @@ export class AddInvoiceComponent {
     }),
   });
 
+  visible = false;
+  data: any;
+
   private breadcrumbService = inject(BreadcrumbService);
   private invoicesService = inject(InvoicesService);
   private messageService = inject(MessageService);
@@ -74,6 +81,16 @@ export class AddInvoiceComponent {
 
     const selected = JSON.parse(localStorage.getItem('selected')!);
     this.invoiceForm.get('companyId')!.setValue(selected.id);
+
+    this.invoiceForm.valueChanges.subscribe((res) => {
+      console.log(this.invoiceForm.getRawValue());
+      let data = {
+        ...this.invoiceForm.getRawValue(),
+        company: JSON.parse(localStorage.getItem('selected')!)
+      }
+      this.data = data;
+      console.log(data);
+    });
   }
 
   get items(): FormArray {
@@ -151,5 +168,9 @@ export class AddInvoiceComponent {
         });
         this.router.navigate(['/invoices']);
       });
+  }
+
+  showPreview() {
+    this.visible = true;
   }
 }

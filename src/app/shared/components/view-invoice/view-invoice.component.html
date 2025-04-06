@@ -1,0 +1,63 @@
+<div class="invoice-container">
+  <div class="header">
+    <h1>INVOICE</h1>
+    <img [src]="data?.company?.logo" alt="Company Logo" />
+  </div>
+  <div class="details">
+    <div>
+      <strong>Bill To:</strong>
+      <p>{{data?.client?.name}}</p>
+      <p>Personal ID: {{data?.client?.personalId}}</p>
+      <p>Phone: {{data?.client?.phone}}</p>
+      <p>Email: {{data?.client?.email}}</p>
+    </div>
+    <div>
+      <strong>Company:</strong>
+      <p>{{data?.company?.name}}</p>
+      <p>{{data?.company?.streetAddress}}</p>
+      <p>{{data?.company?.city}}</p>
+      <p>{{data?.company?.country}}</p>
+      <p>VAT: {{data?.company?.vatOrPersonalCode}}</p>
+    </div>
+  </div>
+  <div class="invoice-details">
+    <div>
+      <p><strong>Invoice #: </strong>{{data?.key}}</p>
+      <p><strong>Invoice Date: </strong>{{data?.createdAt | date}}</p>
+      <p><strong>Due Date: </strong>{{data?.dueDate | date}}</p>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>QTY</th>
+        <th>DESCRIPTION</th>
+        <th>CHECK-IN</th>
+        <th>CHECK-OUT</th>
+        <th>UNIT PRICE</th>
+        <th>TOTAL PRICE</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of data?.items; track item.id) {
+        <tr>
+          <td>{{item?.quantity}}</td>
+          <td>{{item?.name}}</td>
+          <td>{{item?.checkInDate | date}}</td>
+          <td>{{item?.checkOutDate | date}}</td>
+          <td>{{item?.unitPrice}}</td>
+          <td>{{item?.totalPrice}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="totals">
+    <div>
+      <p><strong>Deposit Amount:</strong>{{data?.depositAmount}}₾</p>
+      <p><strong>Total Amount:</strong>{{data?.totalAmount}}₾</p>
+    </div>
+  </div>
+  <div class="footer">
+    <h2>Thank You for Your Business!</h2>
+  </div>
+</div>

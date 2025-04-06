@@ -1,1 +1,11 @@
-<p>invoice-actions works!</p>
+<div>
+  @if(data?.status == 1) {
+    <p-button
+      label="I confirm that the invoice details are correct and accepted."
+      [style]="{'width': '100%'}"
+      (click)="confirm()"
+    />
+  } @else {
+    <p>The invoice has already been accepted.</p>
+  }
+</div>

@@ -32,3 +32,17 @@
     }
   }
 }
+
+.preview-invoice {
+  transform: scale(0.55);
+  margin-top: -280px;
+  margin-left: -225px;
+  overflow: hidden !important;
+  width: 1005px;
+}
+
+::ng-deep {
+  .p-dialog-content {
+    overflow: hidden !important;
+  }
+}

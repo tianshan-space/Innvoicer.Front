@@ -84,13 +84,13 @@
         }
 
         .invoice {
+            margin-left: -21px;
             width: 920px;
             margin-top: -75px;
             border-radius: 10px;
             aspect-ratio: 1 / 1.414;
             border: 1px solid gray;
-            transform: scale(0.3);
-            padding: 35px;
+            transform: scale(0.28);
             display: flex;
             flex-direction: column;
 
@@ -137,4 +137,19 @@
 
 .tst {
   flex: 2 !important
+}
+
+
+.preview-invoice {
+  transform: scale(0.55);
+  margin-top: -280px;
+  margin-left: -225px;
+  overflow: hidden !important;
+  width: 1005px;
+}
+
+::ng-deep {
+  .p-dialog-content {
+    overflow: hidden !important;
+  }
 }

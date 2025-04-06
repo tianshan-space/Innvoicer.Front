@@ -11,7 +11,7 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'invoice',
+    path: 'invoice/:id',
     component: InvoiceComponent
   },
   {

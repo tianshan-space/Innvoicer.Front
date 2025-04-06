@@ -1,9 +1,18 @@
 <div class="cont">
   <div class="main">
-    <div class="invoice"></div>
+    <div class="invoice">
+      <app-view-invoice
+        [data]="data"
+      ></app-view-invoice>
+    </div>
   </div>
 
   <div class="actions">
-    <app-invoice-actions></app-invoice-actions>
+    <app-invoice-actions
+      [data]="data"
+      (confirmInvoice)="confirmInvoice()"
+    ></app-invoice-actions>
   </div>
 </div>
+
+<p-confirmdialog />
