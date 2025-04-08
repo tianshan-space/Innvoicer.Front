@@ -27,6 +27,7 @@ export class ActionsComponent implements OnInit {
   comp!: Company[];
   selectedComp!: Company;
   breadcrumbConfig!: Breadcrumb;
+  isInvoicesPage = false;
 
   private breadcrumbService = inject(BreadcrumbService);
   private router = inject(Router);
@@ -35,7 +36,13 @@ export class ActionsComponent implements OnInit {
     this.breadcrumbService.getConfig().subscribe((m) => {
       this.breadcrumbConfig = m;
     });
-  };
+
+    this.isInvoicesPage = this.router.url.includes('/invoices');
+
+    this.router.events.subscribe(() => {
+      this.isInvoicesPage = this.router.url.includes('/invoices');
+    });
+  }
 
   navigateToParent() {
     this.router.navigateByUrl(this.breadcrumbConfig.labelRoute as string);
@@ -52,4 +59,3 @@ export class ActionsComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 }
-

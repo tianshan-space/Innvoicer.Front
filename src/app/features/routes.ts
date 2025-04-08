@@ -18,6 +18,14 @@ export const featureRouters: Routes = [
     title: 'პროფილი',
   },
   {
+    path: 'companies',
+    loadComponent: () =>
+      import('./companies/containers/companies/companies.component').then(
+        (m) => m.CompaniesComponent
+      ),
+    title: 'ინვოისები',
+  },
+  {
     path: 'invoices/add',
     loadComponent: () =>
       import('./invoices/containers/add-invoice/add-invoice.component').then(

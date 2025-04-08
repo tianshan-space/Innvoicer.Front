@@ -1,0 +1,43 @@
+.main {
+  background-color: white;
+  padding: 20px;
+  border-radius: 25px;
+
+  .no-data {
+    margin-top: 40px;
+    text-align: center;
+    color: gray;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 25px;
+
+    th,
+    td {
+      width: calc(16.7% - 31px);
+      text-align: center;
+    }
+
+    td img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .last-item {
+      width: 180px;
+
+      .actions {
+        width: 180px;
+        gap: 2px;
+        display: flex;
+        justify-content: space-between;
+
+        div {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

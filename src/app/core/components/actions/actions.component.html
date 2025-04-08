@@ -15,7 +15,9 @@
     <div></div>
   }
 
-  <p-select [options]="comp" optionLabel="name" [(ngModel)]="selectedComp" (onChange)="changeSelect()" placeholder="აირჩიეთ სასტუმრო" [style]="{width: '350px'}"/>
-
+  @if (isInvoicesPage)
+  {
+    <p-select [options]="comp" optionLabel="name" [(ngModel)]="selectedComp" (onChange)="changeSelect()" placeholder="აირჩიეთ სასტუმრო" [style]="{width: '350px'}"/>
+  }
   <p-button label="გასვლა" variant="outlined" icon="pi pi-power-off" (click)="logOut()"/>
 </div>

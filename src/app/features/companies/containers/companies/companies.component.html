@@ -1,0 +1,69 @@
+<div class="main">
+  @if (!companies || companies?.length == 0) {
+  <div class="no-data">
+    <h3>ჩანაწერი არ მოიძებნა</h3>
+  </div>
+  } @else {
+  <table>
+    <tr>
+      <th></th>
+      <th>სახელი</th>
+      <th>VAT</th>
+      <th>მისამართი</th>
+      <th>ქალაქი</th>
+      <th>ქვეყანა</th>
+      <th>დამატებითი ინფორმაცია</th>
+      <th>ბანკის ანგარიშები</th>
+      <!-- <th class="last-item"></th> -->
+    </tr>
+    @for(company of companies; track company.id) {
+    <tr>
+      <td><img src="{{ company.logo }}" /></td>
+      <td>{{ company.name }}</td>
+      <td>{{ company.vatOrPersonalCode }}</td>
+      <td>{{ company.streetAddress }}</td>
+      <td>{{ company.city }}</td>
+      <td>{{ company.country }}</td>
+      <td>{{ company.additionalInformation || "N/A" }}</td>
+      <td>
+        @if (company.bankAccounts?.length > 0) {
+        <ul>
+          @for(account of company.bankAccounts; track account.iban) {
+          <li>
+            <strong>ბანკი:</strong> {{ account.bankName }},
+            <strong>SWIFT:</strong> {{ account.swift }}, <strong>IBAN:</strong>
+            {{ account.iban }}
+          </li>
+          }
+        </ul>
+        } @else {
+        <p>"N/A"</p>
+        }
+      </td>
+      <!-- <td class="last-item">
+        <div class="actions">
+          <div>
+            <p-button
+              icon="pi pi-pencil"
+              (click)="editCompany(company.id)"
+              severity="info"
+              tooltipPosition="bottom"
+              pTooltip="რედაქტირება"
+            ></p-button>
+          </div>
+          <div>
+            <p-button
+              icon="pi pi-trash"
+              (click)="deleteCompany(company.id)"
+              severity="danger"
+              tooltipPosition="bottom"
+              pTooltip="წაშლა"
+            ></p-button>
+          </div>
+        </div>
+      </td> -->
+    </tr>
+    }
+  </table>
+  }
+</div>

@@ -2,9 +2,9 @@
   <header>
     <h1>Innvoicer</h1>
     @if (showPanel()) {
-      <i class="pi pi-angle-double-left" (click)="showHidePanel()"></i>
+    <i class="pi pi-angle-double-left" (click)="showHidePanel()"></i>
     } @else {
-      <i class="pi pi-angle-double-right" (click)="showHidePanel()"></i>
+    <i class="pi pi-angle-double-right" (click)="showHidePanel()"></i>
     }
   </header>
 
@@ -18,6 +18,11 @@
       <i class="pi pi-list"></i>
       <p>სერვისები</p>
     </a> -->
+
+    <a routerLink="/companies" routerLinkActive="router-link-active">
+      <i class="pi pi-building"></i>
+      <p>კომპანიები</p>
+    </a>
 
     <a routerLink="/profile" routerLinkActive="router-link-active">
       <i class="pi pi-user"></i>
